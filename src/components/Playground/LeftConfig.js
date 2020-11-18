@@ -42,7 +42,12 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
             isOpen={optimDropdownOpen} 
             toggle={() => setOptimDropdownOpen(!optimDropdownOpen)}
           >
-            <DropdownToggle caret>
+            <DropdownToggle 
+              caret
+              style={{
+                backgroundColor: "white",
+              }}
+            >
               {optimizer == null ? "Select" : optimizer}
             </DropdownToggle>
             <DropdownMenu>
@@ -71,7 +76,12 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
             isOpen={lfDropdownOpen} 
             toggle={() => setLfDropdownOpen(!lfDropdownOpen)}
           >
-            <DropdownToggle caret>
+            <DropdownToggle 
+              caret
+              style={{
+                backgroundColor: "white",
+              }}
+            >
               {lossFunction == null ? "Select" : lossFunction}
             </DropdownToggle>
             <DropdownMenu>
@@ -106,7 +116,7 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
           <Input type="text" name="testBatchSize" id="testBS" placeholder="32" />
         </Col>
       </Row>
-    <h6>Other</h6>
+    <h6 className="mt-2">Other</h6>
       <Row className="mt-2">
         <Col lg="6">
           <p># of GPUs</p>

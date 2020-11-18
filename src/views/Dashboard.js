@@ -31,6 +31,8 @@ import RightConfig from "../components/Playground/RightConfig.js"
 const Dashboard = () => {
   const [optimizer, setOptimizer] = useState();
   const [lossFunction, setLossFunction] = useState();
+  const [activeLayers, setActiveLayers] = useState([]);
+  const [currentId, setCurrentId] = useState(0);
 
   return (
     <>
@@ -64,7 +66,9 @@ const Dashboard = () => {
             >
               Model Playground
             </h6>
-            <ModelPlayground />
+            <ModelPlayground 
+              activeLayers={ activeLayers }
+            />
           </Col>
           <Col className="px-0 ml-2">
             <h6 className="text-center"
@@ -74,7 +78,11 @@ const Dashboard = () => {
             >
               Layers
             </h6>
-            <RightConfig />
+            <RightConfig 
+              activeLayers={ activeLayers }
+              currentId={ currentId }
+              setCurrentId={ setCurrentId }
+            />
           </Col>
         </Row>
       </Container>
