@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Container,
@@ -29,6 +29,9 @@ import ModelPlayground from "../components/Playground/ModelPlayground.js"
 import RightConfig from "../components/Playground/RightConfig.js"
 
 const Dashboard = () => {
+  const [optimizer, setOptimizer] = useState();
+  const [lossFunction, setLossFunction] = useState();
+
   return (
     <>
       <MainBar />
@@ -44,9 +47,14 @@ const Dashboard = () => {
                 fontWeight: "bold",
               }}
             >
-              Training Config
+              Configurations
             </h6>
-            <LeftConfig />
+            <LeftConfig 
+              optimizer={optimizer}
+              setOptimizer={setOptimizer}
+              lossFunction={lossFunction}
+              setLossFunction={setLossFunction}
+            />
           </Col>
           <Col lg="6" className="px-0">
             <h6 className="text-center"

@@ -8,6 +8,7 @@ const ModelPlayground = () => {
       style={{
         backgroundColor: "#F2F2F2",
         height: "100%",
+        overflowY: "scroll",
       }}
     >
     </div>
