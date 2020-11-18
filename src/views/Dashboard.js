@@ -29,10 +29,15 @@ import ModelPlayground from "../components/Playground/ModelPlayground.js"
 import RightConfig from "../components/Playground/RightConfig.js"
 
 const Dashboard = () => {
+  // Left Config State
   const [optimizer, setOptimizer] = useState();
   const [lossFunction, setLossFunction] = useState();
+  // Model Playground State
   const [activeLayers, setActiveLayers] = useState([]);
-  const [currentId, setCurrentId] = useState(0);
+  const [nextId, setNextId] = useState(0);
+  // Right Config State
+  const [openLayerConfig, setOpenLayerConfig] = useState(false);
+  const [activeId, setActiveId] = useState();
 
   return (
     <>
@@ -68,6 +73,7 @@ const Dashboard = () => {
             </h6>
             <ModelPlayground 
               activeLayers={ activeLayers }
+              setOpenLayerConfig={ setOpenLayerConfig }
             />
           </Col>
           <Col className="px-0 ml-2">
@@ -80,8 +86,11 @@ const Dashboard = () => {
             </h6>
             <RightConfig 
               activeLayers={ activeLayers }
-              currentId={ currentId }
-              setCurrentId={ setCurrentId }
+              activeId={ activeId }
+              nextId={ nextId }
+              setNextId={ setNextId }
+              openLayerConfig={ openLayerConfig }
+              setOpenLayerConfig={ setOpenLayerConfig }
             />
           </Col>
         </Row>

@@ -1,34 +1,24 @@
 import React from "react";
 
+import {
+  Button
+} from "reactstrap";
+
 import StaticLayer from "components/Layers/StaticLayer.js"
+import layers from "components/Layers/layers.js"
 
-const layers = [
-  {
-    name: "Input",
-    color: "#24C700",
-  },
-  {
-    name: "Convolution 2D",
-    color: "#007DC7",
-  },
-  {
-    name: "Relu",
-    color: "#F7C500",
-  },
-  {
-    name: "Maxpool 2D",
-    color: "#959595",
-  }
-]
-
-const RightConfig = ({ activeLayers, currentId, setCurrentId  }) => {
-  const handleClick = (name, color) => {
+const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpenLayerConfig  }) => {
+  const handleClick = (name) => {
     activeLayers.push({
-      id: currentId,
+      id: nextId,
       name: name,
     })
 
-    setCurrentId(currentId + 1)
+    setNextId(nextId + 1)
+  }
+
+  const onLayerConfigClose = () => {
+    setOpenLayerConfig(false);
   }
 
   return (
@@ -39,17 +29,45 @@ const RightConfig = ({ activeLayers, currentId, setCurrentId  }) => {
         height: "100%",
       }}
     >
-      <p>Click a layer to add it to your model!</p>
-      {
-        layers.map((val, key) => (
-          <StaticLayer 
-            color={ val.color } 
-            name={ val.name } 
-            handleClick={ () => handleClick(val.name, val.color)  }
-            activeLayers={activeLayers} 
-          />
-        ))
-      }
+    { openLayerConfig ? (
+        <>
+          <p>
+            Configure this layer!
+            <Button 
+              size="sm" 
+              onClick={onLayerConfigClose}
+              style={{ 
+                float: "right", 
+                backgroundColor: "white",
+              }}
+            >
+              x
+            </Button>
+          </p>
+        </>
+      ) : (
+        <>
+          <p>Click a layer to add it to your model!</p>
+          { 
+            Object.keys(layers).map((key, _) => (
+              <>
+                <StaticLayer 
+                  color={ layers[key].color } 
+                  name={ key } 
+                  handleClick={ () => handleClick(key)  }
+                />
+                <div
+                  style={{
+                    height: "6px"
+                  }}
+                >
+                </div>
+              </>
+            ))
+          }
+        </>
+      )
+    }
     </div>
   )
 }
