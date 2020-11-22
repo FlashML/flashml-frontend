@@ -73,7 +73,6 @@ const Dashboard = () => {
             </h6>
             <ModelPlayground 
               activeLayers={ activeLayers }
-              setOpenLayerConfig={ setOpenLayerConfig }
             />
           </Col>
           <Col className="px-0 ml-2">
@@ -86,11 +85,12 @@ const Dashboard = () => {
             </h6>
             <RightConfig 
               activeLayers={ activeLayers }
-              activeId={ activeId }
               nextId={ nextId }
               setNextId={ setNextId }
               openLayerConfig={ openLayerConfig }
               setOpenLayerConfig={ setOpenLayerConfig }
+              activeId={ activeId }
+              setActiveId={ setActiveId }
             />
           </Col>
         </Row>

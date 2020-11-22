@@ -87,6 +87,7 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
             <DropdownMenu>
               <DropdownItem onClick={handleLossChange} value="L2">Mean Square Error</DropdownItem>
               <DropdownItem onClick={handleLossChange} value="L1">Mean Absolute Error</DropdownItem>
+              <DropdownItem onClick={handleLossChange} value="CE">Cross Entropy</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </Col>

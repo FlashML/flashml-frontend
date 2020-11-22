@@ -1,14 +1,7 @@
 
 import React from "react";
 
-import layers from "components/Layers/layers.js"
-import StaticLayer from "components/Layers/StaticLayer.js"
-
-const ModelPlayground = ({ activeLayers, setOpenLayerConfig }) => {
-  const handleClicked = () => {
-    setOpenLayerConfig(true);
-  }
-
+const ModelPlayground = ({ activeLayers }) => {
   return (
     <div
       className="border rounded text-center py-3 px-5"
@@ -21,12 +14,9 @@ const ModelPlayground = ({ activeLayers, setOpenLayerConfig }) => {
       {
         activeLayers.map((val) => (
           <div>
-            <StaticLayer
-              name={val.name}
-              color={layers[val.name].color}
-              handleClick={handleClicked}
-            />
-            <div
+          { val }
+          { console.log(val) }            
+          <div
               style={{
                 margin: "0 auto",
                 height: "16px",

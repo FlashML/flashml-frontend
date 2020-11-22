@@ -5,19 +5,27 @@ import {
 } from "reactstrap";
 
 import StaticLayer from "components/Layers/StaticLayer.js"
-import layers from "components/Layers/layers.js"
+import LayerFactory from "controller/factory/LayerFactory.js"
 
-const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpenLayerConfig  }) => {
+const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpenLayerConfig, activeId, setActiveId }) => {
   const handleClick = (name) => {
-    activeLayers.push({
-      id: nextId,
-      name: name,
-    })
+    activeLayers.push(
+      <StaticLayer 
+        name={name} 
+        handleClick={onLayerConfigOpen}
+      />
+    )
 
     setNextId(nextId + 1)
   }
 
+  const onLayerConfigOpen = () => {
+    setActiveId(nextId);
+    setOpenLayerConfig(true);
+  }
+
   const onLayerConfigClose = () => {
+    setActiveId(null);
     setOpenLayerConfig(false);
   }
 
@@ -32,7 +40,7 @@ const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpen
     { openLayerConfig ? (
         <>
           <p>
-            Configure this layer!
+            Configure this layer! 
             <Button 
               size="sm" 
               onClick={onLayerConfigClose}
@@ -44,17 +52,18 @@ const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpen
               x
             </Button>
           </p>
+          Layer Id: { activeId }
         </>
       ) : (
         <>
           <p>Click a layer to add it to your model!</p>
           { 
-            Object.keys(layers).map((key, _) => (
+            LayerFactory.getAllAvailableLayers().map((obj, _) => (
               <>
                 <StaticLayer 
-                  color={ layers[key].color } 
-                  name={ key } 
-                  handleClick={ () => handleClick(key)  }
+                  color={ obj.color } 
+                  name={ obj.name } 
+                  handleClick={ () => handleClick(obj.name)  }
                 />
                 <div
                   style={{
