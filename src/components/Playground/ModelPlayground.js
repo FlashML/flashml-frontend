@@ -1,6 +1,8 @@
 
 import React from "react";
 
+import StaticLayer from "components/Layers/StaticLayer.js"
+
 const ModelPlayground = ({ activeLayers, setActiveId }) => {
   return (
     <div
@@ -12,9 +14,13 @@ const ModelPlayground = ({ activeLayers, setActiveId }) => {
       }}
     >
       {
-        activeLayers.map((val) => (
+        activeLayers.map((obj) => (
           <div>
-            { val.renderComponent(setActiveId) }
+            <StaticLayer 
+              color={ obj.color } 
+              name={ obj.name } 
+              handleClick={ () => setActiveId(obj.uid) }
+            />
             <div
               style={{
                 margin: "0 auto",
