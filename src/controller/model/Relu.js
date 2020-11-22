@@ -2,14 +2,10 @@ import Layer from "./Layer.js"
 
 class Relu extends Layer {
   name = "Relu"
-  color = ""
+  color = "#EACF00"
 
-  constructor() {
-    super();
-  }
-
-  renderComponent() {
-
+  constructor(uid) {
+    super(uid);
   }
 }
 

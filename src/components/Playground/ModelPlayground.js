@@ -1,7 +1,7 @@
 
 import React from "react";
 
-const ModelPlayground = ({ activeLayers }) => {
+const ModelPlayground = ({ activeLayers, setActiveId }) => {
   return (
     <div
       className="border rounded text-center py-3 px-5"
@@ -14,9 +14,8 @@ const ModelPlayground = ({ activeLayers }) => {
       {
         activeLayers.map((val) => (
           <div>
-          { val }
-          { console.log(val) }            
-          <div
+            { val.renderComponent(setActiveId) }
+            <div
               style={{
                 margin: "0 auto",
                 height: "16px",

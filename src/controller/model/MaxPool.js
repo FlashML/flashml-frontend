@@ -1,14 +1,11 @@
 import Layer from "./Layer.js"
 
 class MaxPool extends Layer {
-  name = "Maxpool"
+  name = "Maxpool 2D"
+  color = "#939393"
 
-  constructor() {
-    super();
-  }
-
-  renderComponent() {
-
+  constructor(uid) {
+    super(uid);
   }
 }
 

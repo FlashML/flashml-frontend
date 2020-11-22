@@ -2,14 +2,12 @@ import Layer from "./Layer.js"
 
 class Input extends Layer {
   name = "Input"
+  color = "#00BC03"
 
-  constructor() {
-    super();
+  constructor(uid) {
+    super(uid);
   }
 
-  renderComponent() {
-
-  }
 }
 
 export default Input;

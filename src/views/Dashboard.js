@@ -34,9 +34,7 @@ const Dashboard = () => {
   const [lossFunction, setLossFunction] = useState();
   // Model Playground State
   const [activeLayers, setActiveLayers] = useState([]);
-  const [nextId, setNextId] = useState(0);
   // Right Config State
-  const [openLayerConfig, setOpenLayerConfig] = useState(false);
   const [activeId, setActiveId] = useState();
 
   return (
@@ -73,6 +71,7 @@ const Dashboard = () => {
             </h6>
             <ModelPlayground 
               activeLayers={ activeLayers }
+              setActiveId={ setActiveId }
             />
           </Col>
           <Col className="px-0 ml-2">
@@ -85,10 +84,7 @@ const Dashboard = () => {
             </h6>
             <RightConfig 
               activeLayers={ activeLayers }
-              nextId={ nextId }
-              setNextId={ setNextId }
-              openLayerConfig={ openLayerConfig }
-              setOpenLayerConfig={ setOpenLayerConfig }
+              setActiveLayers= { setActiveLayers }
               activeId={ activeId }
               setActiveId={ setActiveId }
             />

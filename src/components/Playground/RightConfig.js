@@ -7,26 +7,14 @@ import {
 import StaticLayer from "components/Layers/StaticLayer.js"
 import LayerFactory from "controller/factory/LayerFactory.js"
 
-const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpenLayerConfig, activeId, setActiveId }) => {
-  const handleClick = (name) => {
-    activeLayers.push(
-      <StaticLayer 
-        name={name} 
-        handleClick={onLayerConfigOpen}
-      />
-    )
-
-    setNextId(nextId + 1)
-  }
-
-  const onLayerConfigOpen = () => {
-    setActiveId(nextId);
-    setOpenLayerConfig(true);
+const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) => {
+  const addLayer = (name) => {
+    const newList = activeLayers.concat(LayerFactory.createLayerFromName(name));
+    setActiveLayers(newList);
   }
 
   const onLayerConfigClose = () => {
     setActiveId(null);
-    setOpenLayerConfig(false);
   }
 
   return (
@@ -37,7 +25,7 @@ const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpen
         height: "100%",
       }}
     >
-    { openLayerConfig ? (
+    { activeId != null ? (
         <>
           <p>
             Configure this layer! 
@@ -63,7 +51,7 @@ const RightConfig = ({ activeLayers, nextId, setNextId, openLayerConfig, setOpen
                 <StaticLayer 
                   color={ obj.color } 
                   name={ obj.name } 
-                  handleClick={ () => handleClick(obj.name)  }
+                  handleClick={ () => addLayer(obj.name)  }
                 />
                 <div
                   style={{
