@@ -1,9 +1,9 @@
-import Input from "controller/model/Input.js";
-import Conv2D from "controller/model/Conv2D.js";
-import Relu from "controller/model/Relu.js";
-import MaxPool from "controller/model/MaxPool.js";
+import Input from "../layers/Input.js";
+import Conv2D from "../layers/Conv2D.js";
+import Relu from "../layers/Relu.js";
+import MaxPool from "../layers/MaxPool.js";
 
-const availableLayers = ["Input", "Convolution 2D", "Relu", "Maxpool 2D"];
+const availableLayers = ["Convolution 2D", "Relu", "Maxpool 2D"];
 
 class LayerFactory {
   static uid = 0

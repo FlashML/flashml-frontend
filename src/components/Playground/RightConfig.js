@@ -5,11 +5,15 @@ import {
 } from "reactstrap";
 
 import StaticLayer from "components/Layers/StaticLayer.js"
-import LayerFactory from "controller/factory/LayerFactory.js"
+import LayerConfigForm from "components/Forms/LayerConfigForm.js"
+import LayerFactory from "model/factory/LayerFactory.js"
+
+import { getLayerFromId } from "utils/ModelUtils.js";
 
 const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) => {
   const addLayer = (name) => {
-    const newList = activeLayers.concat(LayerFactory.createLayerFromName(name));
+    let layerToAdd = LayerFactory.createLayerFromName(name)
+    const newList = activeLayers.concat(layerToAdd);
     setActiveLayers(newList);
   }
 
@@ -41,6 +45,7 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
             </Button>
           </p>
           Layer Id: { activeId }
+          <LayerConfigForm layer={getLayerFromId(activeId, activeLayers)} />
         </>
       ) : (
         <>

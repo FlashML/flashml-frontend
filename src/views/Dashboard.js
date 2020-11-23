@@ -27,13 +27,14 @@ import MainBar from "../components/Navbars/MainBar.js";
 import LeftConfig from "../components/Playground/LeftConfig.js"
 import ModelPlayground from "../components/Playground/ModelPlayground.js"
 import RightConfig from "../components/Playground/RightConfig.js"
+import LayerFactory from "../model/factory/LayerFactory.js"
 
 const Dashboard = () => {
   // Left Config State
   const [optimizer, setOptimizer] = useState();
   const [lossFunction, setLossFunction] = useState();
   // Model Playground State
-  const [activeLayers, setActiveLayers] = useState([]);
+  const [activeLayers, setActiveLayers] = useState([LayerFactory.createLayerFromName("Input")]);
   // Right Config State
   const [activeId, setActiveId] = useState();
 
