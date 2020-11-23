@@ -8,15 +8,17 @@ import {
 } from "reactstrap";
 
 
-const LayerConfigForm = ({ layer }) => {
-  const [width, setWidth] = useState(layer.width);
-  const [height, setHeight] = useState(layer.height);
-  const [depth, setDepth] = useState(layer.depth);
+const LayerConfigForm = ({ layer, activeId }) => {
+  const [width, setWidth] = useState(layer.getWidth());
+  const [height, setHeight] = useState(layer.getHeight());
+  const [depth, setDepth] = useState(layer.getDepth());
 
 
   /* Update activeLayers by changing the values of the obj in activeId */
   const onSave = () => {
-
+    layer.setWidth(width);
+    layer.setHeight(height);
+    layer.setDepth(depth);
   }
 
   return (

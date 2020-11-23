@@ -14,22 +14,28 @@ const ModelPlayground = ({ activeLayers, setActiveId }) => {
       }}
     >
       {
-        activeLayers.map((obj) => (
+        activeLayers.map((obj, index) => (
           <div>
             <StaticLayer 
               color={ obj.color } 
               name={ obj.name } 
               handleClick={ () => setActiveId(obj.uid) }
             />
-            <div
-              style={{
-                margin: "0 auto",
-                height: "16px",
-                width: "3px",
-                backgroundColor: "#808080",
-              }}
-            >
-            </div>
+          { index !== (activeLayers.length - 1) ? (
+              <div
+                style={{
+                  margin: "0 auto",
+                  height: "16px",
+                  width: "3px",
+                  backgroundColor: "#808080",
+                }}
+              >
+              </div>
+          ) : (
+            <>
+            </>
+          )
+          }
           </div>
         ))
       }
