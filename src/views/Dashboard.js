@@ -29,12 +29,14 @@ import ModelPlayground from "../components/Playground/ModelPlayground.js"
 import RightConfig from "../components/Playground/RightConfig.js"
 import LayerFactory from "../model/factory/LayerFactory.js"
 
+const inputLayer = LayerFactory.createLayerFromName("Input");
+
 const Dashboard = () => {
   // Left Config State
   const [optimizer, setOptimizer] = useState();
   const [lossFunction, setLossFunction] = useState();
   // Model Playground State
-  const [activeLayers, setActiveLayers] = useState([LayerFactory.createLayerFromName("Input")]);
+  const [activeLayers, setActiveLayers] = useState([inputLayer]);
   // Right Config State
   const [activeId, setActiveId] = useState();
 

@@ -7,29 +7,6 @@ class Input extends Layer {
   height = 32
   depth = 3
 
-  getWidth() {
-    return this.width
-  }
-
-  setWidth(w) {
-    this.width = w
-  }
-
-  setHeight(h) {
-    this.height = h
-  }
-
-  getHeight() {
-    return this.height
-  }
-
-  setDepth(d) {
-    this.depth = d
-  }
-
-  getDepth() {
-    return this.depth
-  }
 }
 
 export default Input;

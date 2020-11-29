@@ -2,8 +2,10 @@ import Input from "../layers/Input.js";
 import Conv2D from "../layers/Conv2D.js";
 import Relu from "../layers/Relu.js";
 import MaxPool from "../layers/MaxPool.js";
+import FullyConnected from "../layers/FullyConnected.js";
+import Dropout from "../layers/Dropout.js";
 
-const availableLayers = ["Convolution 2D", "Relu", "Maxpool 2D"];
+const availableLayers = ["Convolution 2D", "Relu", "Maxpool 2D", "Dropout", "Fully Connected"];
 
 class LayerFactory {
   static uid = 0
@@ -25,6 +27,12 @@ class LayerFactory {
         break;
       case "Maxpool 2D":
         result = new MaxPool(LayerFactory.uid);
+        break;
+      case "Fully Connected":
+        result = new FullyConnected(LayerFactory.uid);
+        break;
+      case "Dropout":
+        result = new Dropout(LayerFactory.uid);
         break;
       default:
         throw new Error("Layer with name: " + name + " does not exist");
