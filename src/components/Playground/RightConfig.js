@@ -21,6 +21,55 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
     setActiveId(null);
   }
 
+	function renderSwitch(activeId) {
+		switch(activeId) {
+				case activeId > 0: 
+					return (
+					<div>
+						<p>
+							Configure this layer! 
+							<Button 
+								size="sm" 
+								onClick={onLayerConfigClose}
+								style={{ 
+									float: "right", 
+									backgroundColor: "white",
+								}}
+							>
+								x
+							</Button>
+						</p>
+						Layer Id: { activeId }
+						<LayerConfigForm layer={getLayerFromId(activeId, activeLayers)} />
+					</div>
+				);
+        
+				case null:
+					return (
+					<div>
+						<p>Click a layer to add it to your model!</p>
+						{ 
+							LayerFactory.getAllAvailableLayers().map((obj, _) => (
+								<>
+									<StaticLayer 
+										color={ obj.color } 
+										name={ obj.name } 
+										handleClick={ () => addLayer(obj.name)  }
+									/>
+									<div
+										style={{
+											height: "6px"
+										}}
+									>
+									</div>
+								</>
+							))
+						}
+					</div>
+				);
+			}
+		}
+	
   return (
     <div
       className="border rounded px-3 py-3"
@@ -29,49 +78,10 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
         height: "100%",
       }}
     >
-    { activeId != null ? (
-        <>
-          <p>
-            Configure this layer! 
-            <Button 
-              size="sm" 
-              onClick={onLayerConfigClose}
-              style={{ 
-                float: "right", 
-                backgroundColor: "white",
-              }}
-            >
-              x
-            </Button>
-          </p>
-          Layer Id: { activeId }
-          <LayerConfigForm layer={getLayerFromId(activeId, activeLayers)} />
-        </>
-      ) : (
-        <>
-          <p>Click a layer to add it to your model!</p>
-          { 
-            LayerFactory.getAllAvailableLayers().map((obj, _) => (
-              <>
-                <StaticLayer 
-                  color={ obj.color } 
-                  name={ obj.name } 
-                  handleClick={ () => addLayer(obj.name)  }
-                />
-                <div
-                  style={{
-                    height: "6px"
-                  }}
-                >
-                </div>
-              </>
-            ))
-          }
-        </>
-      )
-    }
-    </div>
-  )
+			{renderSwitch(activeId)}
+		</div>
+	);
 }
+
 
 export default RightConfig;

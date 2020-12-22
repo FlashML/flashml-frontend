@@ -31,6 +31,7 @@ import LayerFactory from "../model/factory/LayerFactory.js"
 
 const inputLayer = LayerFactory.createLayerFromName("Input");
 
+
 const Dashboard = () => {
   // Left Config State
   const [optimizer, setOptimizer] = useState();
@@ -39,6 +40,18 @@ const Dashboard = () => {
   const [activeLayers, setActiveLayers] = useState([inputLayer]);
   // Right Config State
   const [activeId, setActiveId] = useState();
+
+	const sendData = async function(activeLayers, optimizer, lossFunction) {
+		return await fetch(process.env.REACT_APP_BACKEND_DOMAIN + "/api/create_code", {
+			method: "POST",
+			headers: {"Content-type": "application/json"},
+			body: JSON.stringify({
+				layers: activeLayers
+			})})
+				.then(res => {
+					return res.json();
+				})
+	}
 
   return (
     <>
