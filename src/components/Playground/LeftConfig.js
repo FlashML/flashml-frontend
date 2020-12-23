@@ -52,8 +52,6 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem onClick={handleOptimizerChange} value="SGD">Stochastic Gradient Descent</DropdownItem>
-              <DropdownItem onClick={handleOptimizerChange} value="Adam">Adam</DropdownItem>
-              <DropdownItem onClick={handleOptimizerChange} value="RMSProp">RMSProp</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </Col>
