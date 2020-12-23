@@ -7,7 +7,7 @@ import {
   Button
 } from "reactstrap";
 
-const MainBar = () => {
+const MainBar = ({download_request}) => {
   return (
     <Row 
       className="mt-1"
@@ -28,8 +28,10 @@ const MainBar = () => {
           className="" 
           color="primary" 
           type="button"
+					onClick={download_request}
           style={{
             color: "white",
+						marginTop: "10px",
             backgroundColor: "#8600E8"
           }}
         >

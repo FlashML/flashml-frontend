@@ -30,7 +30,7 @@ import RightConfig from "../components/Playground/RightConfig.js"
 import LayerFactory from "../model/factory/LayerFactory.js"
 
 const inputLayer = LayerFactory.createLayerFromName("Input");
-
+const REACT_APP_BACKEND_DOMAIN = "http://127.0.0.1:5000/"
 
 const Dashboard = () => {
   // Left Config State
@@ -42,20 +42,48 @@ const Dashboard = () => {
   const [activeId, setActiveId] = useState();
 
 	const sendData = async function(activeLayers, optimizer, lossFunction) {
-		return await fetch(process.env.REACT_APP_BACKEND_DOMAIN + "/api/create_code", {
+		return await fetch(REACT_APP_BACKEND_DOMAIN + "/api/create_code", {
 			method: "POST",
 			headers: {"Content-type": "application/json"},
 			body: JSON.stringify({
-				layers: activeLayers
+				layers: activeLayers,
+				hyperparameters: {
+					epochs: 3,
+					learning_rate: 0.1,
+					momentum: 0.8,
+					batch_size: 32,
+					num_workers: 4,
+					loss: "CrossEntropyLoss",
+				},
+				checkpoint_path: 'model.pt',
+				dataset_name: 'CIFAR10'
 			})})
 				.then(res => {
 					return res.json();
 				})
 	}
-
+	console.log(JSON.stringify({layers: activeLayers}))
+	console.log(JSON.stringify({
+				layers: activeLayers,
+				hyperparameters: {
+					epochs: 3,
+					learning_rate: 0.1,
+					momentum: 0.8,
+					batch_size: 32,
+					num_workers: 4,
+					loss: lossFunction,
+				},
+				checkpoint_path: 'model.pt',
+				dataset_name: 'CIFAR10'
+			}))
   return (
     <>
-      <MainBar />
+      <MainBar 
+				download_request={sendData}
+				active_layers={activeLayers}
+				optimizer={optimizer}
+				loss_function={lossFunction}
+			/>
       <Container fluid className="mx-2">
         <Row className="mt-1 mb-2"
           style={{

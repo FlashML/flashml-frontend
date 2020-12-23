@@ -44,7 +44,7 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
 					</div>
 				);
         
-				case null:
+				case activeId===null:
 					return (
 					<div>
 						<p>Click a layer to add it to your model!</p>
