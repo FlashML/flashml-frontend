@@ -11,7 +11,7 @@ import {
   Input
 } from "reactstrap";
 
-const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) => {
+const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, lossFunction, setLossFunction, trainBS, setTrainBS, epochs, setEpochs, testBS, setTestBS, savePath, setSavePath}) => {
   const [optimDropdownOpen, setOptimDropdownOpen] = useState(false);
   const [lfDropdownOpen, setLfDropdownOpen] = useState(false);
 
@@ -52,8 +52,6 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
             </DropdownToggle>
             <DropdownMenu>
               <DropdownItem onClick={handleOptimizerChange} value="SGD">Stochastic Gradient Descent</DropdownItem>
-              <DropdownItem onClick={handleOptimizerChange} value="Adam">Adam</DropdownItem>
-              <DropdownItem onClick={handleOptimizerChange} value="RMSProp">RMSProp</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </Col>
@@ -63,7 +61,7 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
           <p>Learning Rate</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="learningrate" id="lr" placeholder="0.001" />
+          <Input type="text" name="learningrate" id="lr" placeholder="0.001" value={learningRate} onChange={(e) => setLearningRate(e.target.value)} />
         </Col>
       </Row>
       <h6 className="mt-2">Training</h6>
@@ -97,7 +95,7 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
           <p>Batch Size</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="batchSize" id="bs" placeholder="32" />
+          <Input type="text" name="batchSize" id="bs" placeholder="32" value={trainBS} onChange={(e) => setTrainBS(e.target.value)} />
         </Col>
       </Row>
       <Row className="mt-2">
@@ -105,7 +103,7 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
           <p># of Epochs</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="epochs" id="epochs" placeholder="10" />
+          <Input type="text" name="epochs" id="epochs" placeholder="10" value={epochs} onChange={(e) => setEpochs(e.target.value)}/>
         </Col>
       </Row>
     <h6 className="mt-2">Test</h6>
@@ -114,20 +112,12 @@ const LeftConfig = ({optimizer, setOptimizer, lossFunction, setLossFunction}) =>
           <p>Batch Size</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="testBatchSize" id="testBS" placeholder="32" />
+          <Input type="text" name="testBatchSize" id="testBS" placeholder="32" value={testBS} onChange={(e) => setTestBS(e.target.value)}/>
         </Col>
       </Row>
     <h6 className="mt-2">Other</h6>
-      <Row className="mt-2">
-        <Col lg="6">
-          <p># of GPUs</p>
-        </Col>
-        <Col lg="6">
-          <Input type="text" name="testBatchSize" id="testBS" placeholder="32" />
-        </Col>
-      </Row>
       <p>Model Save Path</p>
-      <Input type="text" name="text" id="exampleText" placeholder="/foo/bar/checkpoint.pt" />
+      <Input type="text" name="text" id="exampleText" placeholder="/foo/bar/checkpoint.pt" value={savePath} onChange={(e) => setSavePath(e.target.value)}/>
     </div>
   )
 }
