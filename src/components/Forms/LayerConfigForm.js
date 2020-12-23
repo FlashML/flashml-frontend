@@ -1,55 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 
-import {
-  Row, 
-  Col, 
-  Input,
-  Button
-} from "reactstrap";
+import InputLayerConfig from "./InputLayerConfig.js"
+import ConvLayerConfig from "./ConvLayerConfig.js"
+import ReluLayerConfig from "./ReluLayerConfig.js"
+import MaxpoolLayerConfig from "./MaxpoolLayerConfig.js"
+import FcLayerConfig from "./FcLayerConfig.js"
+import DropoutLayerConfig from "./DropoutLayerConfig.js"
 
-
-const LayerConfigForm = ({ layer, activeId }) => {
-  const [width, setWidth] = useState(layer.getWidth());
-  const [height, setHeight] = useState(layer.getHeight());
-  const [depth, setDepth] = useState(layer.getDepth());
-
-
-  /* Update activeLayers by changing the values of the obj in activeId */
-  const onSave = () => {
-    layer.setWidth(width);
-    layer.setHeight(height);
-    layer.setDepth(depth);
+const LayerConfigForm = ({ layer, setActiveId }) => {
+  console.log(layer.name)
+  switch (layer.name) {
+    case "Input":
+      return <InputLayerConfig layer={layer} setActiveId={setActiveId} />
+    case "Convolution 2D":
+      return <ConvLayerConfig layer={layer} setActiveId={setActiveId} />
+    case "Relu":
+      return <ReluLayerConfig layer={layer} setActiveId={setActiveId} />
+    case "Maxpool 2D":
+      return <MaxpoolLayerConfig layer={layer} setActiveId={setActiveId} />
+    case "Fully Connected":
+      return <FcLayerConfig layer={layer} setActiveId={setActiveId} />
+    case "Dropout":
+      return <DropoutLayerConfig layer={layer} setActiveId={setActiveId} />
+    default:
+      throw new Error("Layer with name: " + layer.name + " does not exist");
   }
-
-  return (
-    <>
-      <Row className="mt-2">
-        <Col lg="6">
-          <p>Width</p>
-        </Col>
-        <Col lg="6">
-          <Input type="text" name="width" placeholder="32" value={ width } onChange={(e) => setWidth(e.target.value)}/>
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col lg="6">
-          <p>Height</p>
-        </Col>
-        <Col lg="6">
-          <Input type="text" name="height" placeholder="32" value={ height } onChange={(e) => setHeight(e.target.value)} />
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col lg="6">
-          <p>Depth</p>
-        </Col>
-        <Col lg="6">
-          <Input type="text" name="depth" placeholder="3" value={ depth } onChange={(e) => setDepth(e.target.value)} />
-        </Col>
-      </Row>
-      <Button className="mt-2" color="success" onClick={onSave}>Save</Button>
-    </>
-  );
 }
 
 export default LayerConfigForm;
