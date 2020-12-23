@@ -47,11 +47,16 @@ const Dashboard = () => {
   const [activeId, setActiveId] = useState();
 
 	const sendData = async function(activeLayers, optimizer, lossFunction) {
-		return await fetch(REACT_APP_BACKEND_DOMAIN + "/api/create_code", {
+		return await fetch(REACT_APP_BACKEND_DOMAIN + "api/create_code", {
 			method: "POST",
-			headers: {"Content-type": "application/json"},
+			headers: {
+				"Content-type": "application/json",
+				"Access-Control-Allow-Origin": REACT_APP_BACKEND_DOMAIN
+			},
 			body: JSON.stringify({
-				layers: activeLayers,
+				layers: [["input", 32, 32, 3], ["conv2d", 6, 5], ["relu"], ["maxpool2d", 2, 2],
+					       ["conv2d", 16, 5], ["relu"], ["maxpool2d", 2, 2], ["dense", 120],
+					       ["relu"], ["dense", 84], ["relu"], ["dense", 10]],
 				hyperparameters: {
 					epochs: 3,
 					learning_rate: 0.1,
@@ -64,7 +69,7 @@ const Dashboard = () => {
 				dataset_name: 'CIFAR10'
 			})})
 				.then(res => {
-					return res.json();
+					return console.log(res)
 				})
 	}
 	console.log(JSON.stringify({layers: activeLayers}))
