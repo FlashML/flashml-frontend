@@ -5,7 +5,7 @@ import MaxPool from "../layers/MaxPool.js";
 import FullyConnected from "../layers/FullyConnected.js";
 import Dropout from "../layers/Dropout.js";
 
-const availableLayers = ["Convolution 2D", "Relu", "Maxpool 2D", "Dropout", "Fully Connected"];
+const availableLayers = ["Convolution 2D", "Relu", "Maxpool 2D", "Fully Connected"];
 
 class LayerFactory {
   static uid = 0

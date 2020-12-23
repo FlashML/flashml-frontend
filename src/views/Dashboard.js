@@ -35,7 +35,12 @@ const inputLayer = LayerFactory.createLayerFromName("Input");
 const Dashboard = () => {
   // Left Config State
   const [optimizer, setOptimizer] = useState();
+  const [learningRate, setLearningRate] = useState();
   const [lossFunction, setLossFunction] = useState();
+  const [trainBS, setTrainBS] = useState();
+  const [epochs, setEpochs] = useState();
+  const [testBS, setTestBS] = useState();
+  const [savePath, setSavePath] = useState();
   // Model Playground State
   const [activeLayers, setActiveLayers] = useState([inputLayer]);
   // Right Config State
@@ -73,8 +78,18 @@ const Dashboard = () => {
             <LeftConfig 
               optimizer={optimizer}
               setOptimizer={setOptimizer}
+              learningRate={learningRate}
+              setLearningRate={setLearningRate}
               lossFunction={lossFunction}
               setLossFunction={setLossFunction}
+              trainBS={trainBS}
+              setTrainBS={setTrainBS}
+              epochs={epochs}
+              setEpochs={setEpochs}
+              testBS={testBS}
+              setTestBS={setTestBS}
+              savePath={savePath}
+              setSavePath={setSavePath}
             />
           </Col>
           <Col lg="6" className="px-0">
