@@ -7,6 +7,10 @@ class Input extends Layer {
   height = 32
   depth = 3
 
+  toJson() {
+    return [this.name, this.width, this.height, this.depth]
+  }
+
 }
 
 export default Input;

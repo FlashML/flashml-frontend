@@ -46,7 +46,21 @@ const Dashboard = () => {
   // Right Config State
   const [activeId, setActiveId] = useState();
 
-	const sendData = async function(activeLayers, optimizer, lossFunction) {
+	const sendData = async function() {
+    console.log(JSON.stringify({
+        layers: activeLayers.map((layer) => layer.toJson()),
+				hyperparameters: {
+					epochs: epochs,
+					learning_rate: learningRate,
+					momentum: 0.1,
+					batch_size: trainBS,
+					num_workers: 4,
+					loss: lossFunction,
+				},
+				checkpoint_path: savePath,
+				dataset_name: 'CIFAR10'
+			}))
+
 		return await fetch(REACT_APP_BACKEND_DOMAIN + "api/create_code", {
 			method: "POST",
 			headers: {
@@ -54,45 +68,27 @@ const Dashboard = () => {
 				"Access-Control-Allow-Origin": REACT_APP_BACKEND_DOMAIN
 			},
 			body: JSON.stringify({
-				layers: [["input", 32, 32, 3], ["conv2d", 6, 5], ["relu"], ["maxpool2d", 2, 2],
-					       ["conv2d", 16, 5], ["relu"], ["maxpool2d", 2, 2], ["dense", 120],
-					       ["relu"], ["dense", 84], ["relu"], ["dense", 10]],
+        layers: activeLayers.map((layer) => layer.toJson()),
 				hyperparameters: {
-					epochs: 3,
-					learning_rate: 0.1,
-					momentum: 0.8,
-					batch_size: 32,
+					epochs: epochs,
+					learning_rate: learningRate,
+					momentum: 0.1,
+					batch_size: trainBS,
 					num_workers: 4,
-					loss: "CrossEntropyLoss",
+					loss: lossFunction,
 				},
-				checkpoint_path: 'model.pt',
+				checkpoint_path: savePath,
 				dataset_name: 'CIFAR10'
 			})})
 				.then(res => {
 					return console.log(res)
 				})
 	}
-	console.log(JSON.stringify({layers: activeLayers}))
-	console.log(JSON.stringify({
-				layers: activeLayers,
-				hyperparameters: {
-					epochs: 3,
-					learning_rate: 0.1,
-					momentum: 0.8,
-					batch_size: 32,
-					num_workers: 4,
-					loss: lossFunction,
-				},
-				checkpoint_path: 'model.pt',
-				dataset_name: 'CIFAR10'
-			}))
+
   return (
     <>
       <MainBar 
-				download_request={sendData}
-				active_layers={activeLayers}
-				optimizer={optimizer}
-				loss_function={lossFunction}
+				downloadRequest={sendData}
 			/>
       <Container fluid className="mx-2">
         <Row className="mt-1 mb-2"

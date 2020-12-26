@@ -5,6 +5,10 @@ class MaxPool extends Layer {
   color = "#939393"
   kernelSize = 2
   stride = 2
+
+  toJson() {
+    return [this.name, this.kernelSize, this.stride]
+  }
 }
 
 export default MaxPool;
