@@ -75,6 +75,7 @@ const Dashboard = () => {
 					momentum: 0.1,
 					batch_size: trainBS,
 					num_workers: 4,
+          optimizer: optimizer,
 					loss: lossFunction,
 				},
 				checkpoint_path: savePath,
