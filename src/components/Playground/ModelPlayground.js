@@ -18,7 +18,7 @@ const ModelPlayground = ({ activeLayers, setActiveId }) => {
           <div>
             <StaticLayer 
               color={ obj.color } 
-              name={ obj.name } 
+              name={ obj.label } 
               handleClick={ () => setActiveId(obj.uid) }
             />
             { index !== (activeLayers.length - 1) ? (

@@ -5,25 +5,29 @@ import ConvLayerConfig from "./ConvLayerConfig.js"
 import ReluLayerConfig from "./ReluLayerConfig.js"
 import MaxpoolLayerConfig from "./MaxpoolLayerConfig.js"
 import FcLayerConfig from "./FcLayerConfig.js"
-import DropoutLayerConfig from "./DropoutLayerConfig.js"
+
+import Input from "../../model/layers/Input.js";
+import Conv2D from "../../model/layers/Conv2D.js";
+import Relu from "../../model/layers/Relu.js";
+import MaxPool from "../../model/layers/MaxPool.js";
+import FullyConnected from "../../model/layers/FullyConnected.js";
+
+import { layers } from "../../model/factory/LayerFactory.js"
 
 const LayerConfigForm = ({ layer, setActiveId }) => {
-  console.log(layer.name)
-  switch (layer.name) {
-    case "Input":
+  switch (layer.label) {
+    case layers.Input:
       return <InputLayerConfig layer={layer} setActiveId={setActiveId} />
-    case "Convolution 2D":
+    case layers.Conv2D:
       return <ConvLayerConfig layer={layer} setActiveId={setActiveId} />
-    case "Relu":
+    case layers.Relu:
       return <ReluLayerConfig layer={layer} setActiveId={setActiveId} />
-    case "Maxpool 2D":
+    case layers.MaxPool:
       return <MaxpoolLayerConfig layer={layer} setActiveId={setActiveId} />
-    case "Fully Connected":
+    case layers.FullyConnected:
       return <FcLayerConfig layer={layer} setActiveId={setActiveId} />
-    case "Dropout":
-      return <DropoutLayerConfig layer={layer} setActiveId={setActiveId} />
     default:
-      throw new Error("Layer with name: " + layer.name + " does not exist");
+      throw new Error("Layer with name: " + layer.label + " does not exist");
   }
 }
 

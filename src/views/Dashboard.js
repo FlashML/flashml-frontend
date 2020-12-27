@@ -28,6 +28,7 @@ import LeftConfig from "../components/Playground/LeftConfig.js"
 import ModelPlayground from "../components/Playground/ModelPlayground.js"
 import RightConfig from "../components/Playground/RightConfig.js"
 import LayerFactory from "../model/factory/LayerFactory.js"
+import Input from "../model/layers/Input.js"
 
 const inputLayer = LayerFactory.createLayerFromName("Input");
 const REACT_APP_BACKEND_DOMAIN = "http://127.0.0.1:5000/"
@@ -47,7 +48,7 @@ const Dashboard = () => {
   const [activeId, setActiveId] = useState();
 
 	const sendData = async function() {
-    console.log(JSON.stringify({
+    const data = JSON.stringify({
         layers: activeLayers.map((layer) => layer.toJson()),
 				hyperparameters: {
 					epochs: epochs,
@@ -59,31 +60,25 @@ const Dashboard = () => {
 				},
 				checkpoint_path: savePath,
 				dataset_name: 'CIFAR10'
-			}))
+			})
 
+    console.log(data)
 		return await fetch(REACT_APP_BACKEND_DOMAIN + "api/create_code", {
 			method: "POST",
 			headers: {
 				"Content-type": "application/json",
 				"Access-Control-Allow-Origin": REACT_APP_BACKEND_DOMAIN
 			},
-			body: JSON.stringify({
-        layers: activeLayers.map((layer) => layer.toJson()),
-				hyperparameters: {
-					epochs: epochs,
-					learning_rate: learningRate,
-					momentum: 0.1,
-					batch_size: trainBS,
-					num_workers: 4,
-          optimizer: optimizer,
-					loss: lossFunction,
-				},
-				checkpoint_path: savePath,
-				dataset_name: 'CIFAR10'
-			})})
-				.then(res => {
-					return console.log(res)
-				})
+			body: data,
+    })
+    .then(res => {
+      const element = document.createElement("a");
+      const file = new Blob(["This is a test file"], {type: 'text/plain'});
+      element.href = URL.createObjectURL(file);
+      element.download = "train.py";
+      document.body.appendChild(element); // Required for this to work in FireFox
+      element.click();
+    })
 	}
 
   return (

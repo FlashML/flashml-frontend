@@ -51,8 +51,8 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
               <>
                 <StaticLayer 
                   color={ obj.color } 
-                  name={ obj.name } 
-                  handleClick={ () => addLayer(obj.name)  }
+                  name={ obj.label } 
+                  handleClick={ () => addLayer(obj.label)  }
                 />
                 <div
                   style={{

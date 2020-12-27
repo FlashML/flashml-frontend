@@ -3,9 +3,16 @@ import Conv2D from "../layers/Conv2D.js";
 import Relu from "../layers/Relu.js";
 import MaxPool from "../layers/MaxPool.js";
 import FullyConnected from "../layers/FullyConnected.js";
-import Dropout from "../layers/Dropout.js";
 
-const availableLayers = ["Convolution 2D", "Relu", "Maxpool 2D", "Fully Connected"];
+export const layers = {
+  Input: "Input",
+  Conv2D: "Convolution 2D", 
+  Relu: "Relu", 
+  MaxPool: "Maxpool 2D", 
+  FullyConnected: "Fully Connected",
+}
+
+const availableLayers = [layers.Conv2D, layers.Relu, layers.MaxPool, layers.FullyConnected];
 
 class LayerFactory {
   static uid = 0
@@ -16,23 +23,20 @@ class LayerFactory {
   static createLayerFromName(name, incrementId=true) {
     var result;
     switch (name) {
-      case "Input":
+      case layers.Input:
         result = new Input(LayerFactory.uid);
         break;
-      case "Convolution 2D":
+      case layers.Conv2D:
         result = new Conv2D(LayerFactory.uid);
         break;
-      case "Relu":
+      case layers.Relu:
         result = new Relu(LayerFactory.uid);
         break;
-      case "Maxpool 2D":
+      case layers.MaxPool:
         result = new MaxPool(LayerFactory.uid);
         break;
-      case "Fully Connected":
+      case layers.FullyConnected:
         result = new FullyConnected(LayerFactory.uid);
-        break;
-      case "Dropout":
-        result = new Dropout(LayerFactory.uid);
         break;
       default:
         throw new Error("Layer with name: " + name + " does not exist");
@@ -48,7 +52,8 @@ class LayerFactory {
    * Returns a layer object for each available layer
    **/
   static getAllAvailableLayers() {
-    return availableLayers.map(name => LayerFactory.createLayerFromName(name, false));
+    var layers = availableLayers.map(name => LayerFactory.createLayerFromName(name, false))
+    return layers;
   }
 }
 

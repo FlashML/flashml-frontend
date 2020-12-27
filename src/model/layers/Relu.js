@@ -1,11 +1,11 @@
 import Layer from "./Layer.js"
 
 class Relu extends Layer {
-  name = "Relu"
+  label = "Relu"
   color = "#EACF00"
 
   toJson() {
-    return [this.name]
+    return ["relu"]
   }
 }
 

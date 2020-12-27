@@ -1,12 +1,12 @@
 import Layer from "./Layer.js"
 
 class FullyConnected extends Layer {
-  name = "Fully Connected"
+  label = "Fully Connected"
   color = "#4E00B5"
   size = 256
 
   toJson() {
-    return [this.name, this.size]
+    return ["dense", this.size]
   }
 }
 

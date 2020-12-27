@@ -1,7 +1,7 @@
 import Layer from "./Layer.js"
 
 class Dropout extends Layer {
-  name = "Dropout"
+  label = "Dropout"
   color = "#09C8B0"
 }
 
