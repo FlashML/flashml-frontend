@@ -6,12 +6,6 @@ import ReluLayerConfig from "./ReluLayerConfig.js"
 import MaxpoolLayerConfig from "./MaxpoolLayerConfig.js"
 import FcLayerConfig from "./FcLayerConfig.js"
 
-import Input from "../../model/layers/Input.js";
-import Conv2D from "../../model/layers/Conv2D.js";
-import Relu from "../../model/layers/Relu.js";
-import MaxPool from "../../model/layers/MaxPool.js";
-import FullyConnected from "../../model/layers/FullyConnected.js";
-
 import { layers } from "../../model/factory/LayerFactory.js"
 
 const LayerConfigForm = ({ layer, setActiveId }) => {

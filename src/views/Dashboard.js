@@ -66,14 +66,14 @@ const Dashboard = () => {
 		return await fetch(REACT_APP_BACKEND_DOMAIN + "api/create_code", {
 			method: "POST",
 			headers: {
-				"Content-type": "application/json",
+				"Content-type": "application/x-www-form-urlencoded",
 				"Access-Control-Allow-Origin": REACT_APP_BACKEND_DOMAIN
 			},
 			body: data,
     })
     .then(res => {
       const element = document.createElement("a");
-      const file = new Blob(["This is a test file"], {type: 'text/plain'});
+      const file = new Blob([res.blob], {type: 'text/plain'});
       element.href = URL.createObjectURL(file);
       element.download = "train.py";
       document.body.appendChild(element); // Required for this to work in FireFox
