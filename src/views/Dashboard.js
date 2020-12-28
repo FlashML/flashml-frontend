@@ -36,12 +36,12 @@ const REACT_APP_BACKEND_DOMAIN = "http://127.0.0.1:5000/"
 const Dashboard = () => {
   // Left Config State
   const [optimizer, setOptimizer] = useState();
-  const [learningRate, setLearningRate] = useState();
+  const [learningRate, setLearningRate] = useState(0.001);
   const [lossFunction, setLossFunction] = useState();
-  const [trainBS, setTrainBS] = useState();
-  const [epochs, setEpochs] = useState();
-  const [testBS, setTestBS] = useState();
-  const [savePath, setSavePath] = useState();
+  const [trainBS, setTrainBS] = useState(32);
+  const [epochs, setEpochs] = useState(10);
+  const [testBS, setTestBS] = useState(32);
+  const [savePath, setSavePath] = useState('/foo/bar/checkpoint.pt');
   // Model Playground State
   const [activeLayers, setActiveLayers] = useState([inputLayer]);
   // Right Config State
@@ -79,6 +79,10 @@ const Dashboard = () => {
       document.body.appendChild(element); // Required for this to work in FireFox
       element.click();
     })
+      .catch(error => {
+        console.log(error);
+        alert("Unable to download file. Please make sure that you have filled in all the model configurations")
+      })
 	}
 
   return (
