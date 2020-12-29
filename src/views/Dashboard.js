@@ -75,7 +75,7 @@ const Dashboard = () => {
       const element = document.createElement("a");
       const file = await res.blob();
       element.href = URL.createObjectURL(file);
-      element.download = "train.py";
+      element.download = "flashml.zip";
       document.body.appendChild(element); // Required for this to work in FireFox
       element.click();
     })
