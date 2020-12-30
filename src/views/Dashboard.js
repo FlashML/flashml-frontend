@@ -16,11 +16,14 @@
 
 */
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import {
   Container,
   Row,
-  Col
+  Col,
+  Button,
+  Tooltip
 } from "reactstrap";
 
 import MainBar from "../components/Navbars/MainBar.js";
@@ -28,7 +31,7 @@ import LeftConfig from "../components/Playground/LeftConfig.js"
 import ModelPlayground from "../components/Playground/ModelPlayground.js"
 import RightConfig from "../components/Playground/RightConfig.js"
 import LayerFactory from "../model/factory/LayerFactory.js"
-import Input from "../model/layers/Input.js"
+import Instructions from "./Instructions.js"
 
 const inputLayer = LayerFactory.createLayerFromName("Input");
 const REACT_APP_BACKEND_DOMAIN = "http://127.0.0.1:5000/"
@@ -41,11 +44,14 @@ const Dashboard = () => {
   const [trainBS, setTrainBS] = useState(32);
   const [epochs, setEpochs] = useState(10);
   const [testBS, setTestBS] = useState(32);
+  const [dataset, setDataset] = useState('CIFAR10');
   const [savePath, setSavePath] = useState('/foo/bar/checkpoint.pt');
   // Model Playground State
   const [activeLayers, setActiveLayers] = useState([inputLayer]);
   // Right Config State
   const [activeId, setActiveId] = useState();
+  // Other
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
 	const sendData = async function() {
     const data = JSON.stringify({
@@ -59,7 +65,7 @@ const Dashboard = () => {
 					loss: lossFunction,
 				},
 				checkpoint_path: savePath,
-				dataset_name: 'CIFAR10'
+				dataset_name: dataset,
 			})
 
     console.log(data)
@@ -117,6 +123,8 @@ const Dashboard = () => {
               setEpochs={setEpochs}
               testBS={testBS}
               setTestBS={setTestBS}
+              dataset={dataset}
+              setDataset={setDataset}
               savePath={savePath}
               setSavePath={setSavePath}
             />
@@ -127,7 +135,34 @@ const Dashboard = () => {
                 fontWeight: "bold",
               }}
             >
-              Model Playground
+              Model Playground 
+                <Button
+                  className="ml-2 text-center"
+                  id="instructions"
+                  style={{
+                    margin: "0",
+                    padding: "0",
+                    fontSize: "16px",
+                    color: "white",
+                    height: "30px",
+                    width: "30px",
+                    borderRadius: "100%",
+                    background: "#BEBEBE",
+                  }}
+                >
+                  ?
+                </Button>
+              <Tooltip
+                placement="right"
+                isOpen={tooltipOpen}
+                target="instructions"
+                style={{
+                  width: "250px",
+                }}
+                toggle={() => setTooltipOpen(!tooltipOpen)}
+              >
+                <Instructions />
+              </Tooltip>
             </h6>
             <ModelPlayground 
               activeLayers={ activeLayers }
