@@ -35,7 +35,7 @@ const MainBar = ({downloadRequest}) => {
             backgroundColor: "#8600E8"
           }}
         >
-            Download
+            Download Code
         </Button>
       </Col>
     </Row>
