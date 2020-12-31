@@ -19,33 +19,34 @@ const StaticLayer = ({ color, name, handleClick, removable, onRemove }) => {
       style={{
         backgroundColor: color,
         color: "white",
+        padding: "0",
       }}
     >
-      <span>
-        {name}
-        {removable ? 
-          (
-            <>
-              <Button
-                size="sm"
-                style={{
-                  height: '100%',
-                  float: 'right',
-                  color: 'white',
-                  backgroundColor: color,
-                  border: 'none'
-                }}
-                onClick={remove}
-              >
-                x
-              </Button>     
-            </>
-          )
-          : (
-            null
-          )
-        }
-      </span>
+      {name}
+      {removable ? 
+        (
+          <>
+            <div
+              size="sm"
+              className='mr-2'
+              style={{
+                height: '100%',
+                float: 'right',
+                color: 'white',
+                backgroundColor: color,
+                border: 'none',
+                cursor: 'pointer',
+              }}
+              onClick={remove}
+            >
+              x
+            </div>     
+          </>
+        )
+        : (
+          null
+        )
+      }
     </Col>
   )
 }
