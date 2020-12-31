@@ -66,7 +66,7 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
           <p>Learning Rate</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="learningrate" id="lr" placeholder="0.001" value={learningRate} onChange={(e) => setLearningRate(e.target.value)} />
+          <Input type="text" style={{color:"black"}} name="learningrate" id="lr" value={learningRate} onChange={(e) => setLearningRate(e.target.value)} />
         </Col>
       </Row>
       <h6 className="mt-2">Training</h6>
@@ -100,7 +100,7 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
           <p>Batch Size</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="batchSize" id="bs" placeholder="32" value={trainBS} onChange={(e) => setTrainBS(e.target.value)} />
+          <Input type="text" style={{color:"black"}} name="batchSize" id="bs" value={trainBS} onChange={(e) => setTrainBS(e.target.value)} />
         </Col>
       </Row>
       <Row className="mt-2">
@@ -108,7 +108,7 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
           <p># of Epochs</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="epochs" id="epochs" placeholder="10" value={epochs} onChange={(e) => setEpochs(e.target.value)}/>
+          <Input type="text" style={{color:"black"}} name="epochs" id="epochs" value={epochs} onChange={(e) => setEpochs(e.target.value)}/>
         </Col>
       </Row>
     <h6 className="mt-2">Test</h6>
@@ -117,7 +117,7 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
           <p>Batch Size</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="testBatchSize" id="testBS" placeholder="32" value={testBS} onChange={(e) => setTestBS(e.target.value)}/>
+          <Input type="text" style={{color:"black"}} name="testBatchSize" id="testBS" value={testBS} onChange={(e) => setTestBS(e.target.value)}/>
         </Col>
       </Row>
     <h6 className="mt-2">Other</h6>
@@ -147,7 +147,7 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
         </Col>
       </Row>
       <p>Model Save Path</p>
-      <Input type="text" name="text" id="exampleText" placeholder="checkpoint.pt" value={savePath} onChange={(e) => setSavePath(e.target.value)}/>
+      <Input type="text" style={{color:"black"}} name="text" id="exampleText" value={savePath} onChange={(e) => setSavePath(e.target.value)}/>
     </div>
   )
 }
