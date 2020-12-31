@@ -15,6 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
@@ -38,7 +39,7 @@ const inputLayer = LayerFactory.createLayerFromName("Input");
 const PROD = false;
 var REACT_APP_BACKEND_DOMAIN = "http://127.0.0.1:5000/";
 if (PROD) {
-	var REACT_APP_BACKEND_DOMAIN = "https://beta.flash-ml.com/";
+	REACT_APP_BACKEND_DOMAIN = "https://beta.flash-ml.com/";
 }
 
 const Dashboard = () => {
@@ -170,6 +171,8 @@ const Dashboard = () => {
             </h6>
             <ModelPlayground 
               activeLayers={ activeLayers }
+              setActiveLayers={ setActiveLayers }
+              activeId={ activeId }
               setActiveId={ setActiveId }
             />
           </Col>

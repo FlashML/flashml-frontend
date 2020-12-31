@@ -147,7 +147,7 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
         </Col>
       </Row>
       <p>Model Save Path</p>
-      <Input type="text" name="text" id="exampleText" placeholder="/foo/bar/checkpoint.pt" value={savePath} onChange={(e) => setSavePath(e.target.value)}/>
+      <Input type="text" name="text" id="exampleText" placeholder="checkpoint.pt" value={savePath} onChange={(e) => setSavePath(e.target.value)}/>
     </div>
   )
 }

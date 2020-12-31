@@ -1,10 +1,17 @@
 import React from "react";
 
 import {
-  Col
+  Col,
+  Button
 } from "reactstrap";
 
-const StaticLayer = ({ color, name, handleClick }) => {
+const StaticLayer = ({ color, name, handleClick, removable, onRemove }) => {
+
+  const remove = (event) => {
+    onRemove();
+    event.stopPropagation();
+  }
+
   return (
     <Col
       className="border rounded text-center py-1"
@@ -14,7 +21,31 @@ const StaticLayer = ({ color, name, handleClick }) => {
         color: "white",
       }}
     >
-      <span>{name}</span>
+      <span>
+        {name}
+        {removable ? 
+          (
+            <>
+              <Button
+                size="sm"
+                style={{
+                  height: '100%',
+                  float: 'right',
+                  color: 'white',
+                  backgroundColor: color,
+                  border: 'none'
+                }}
+                onClick={remove}
+              >
+                x
+              </Button>     
+            </>
+          )
+          : (
+            null
+          )
+        }
+      </span>
     </Col>
   )
 }

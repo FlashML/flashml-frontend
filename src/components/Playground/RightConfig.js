@@ -53,6 +53,7 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
                   color={ obj.color } 
                   name={ obj.label } 
                   handleClick={ () => addLayer(obj.label)  }
+                  removable={ false }
                 />
                 <div
                   style={{

@@ -3,7 +3,14 @@ import React from "react";
 
 import StaticLayer from "components/Layers/StaticLayer.js"
 
-const ModelPlayground = ({ activeLayers, setActiveId }) => {
+const ModelPlayground = ({ activeLayers, setActiveLayers, activeId, setActiveId }) => {
+  const removeLayer = (uid) => {
+    if (uid === activeId) {
+      setActiveId(null);
+    }
+    setActiveLayers(activeLayers.filter(item => item.uid !== uid));
+  }
+
   return (
     <div
       className="border rounded text-center py-3 px-5"
@@ -20,6 +27,8 @@ const ModelPlayground = ({ activeLayers, setActiveId }) => {
               color={ obj.color } 
               name={ obj.label } 
               handleClick={ () => setActiveId(obj.uid) }
+              removable={ index === 0 ? false : true}
+              onRemove={ () => removeLayer(obj.uid) }
             />
             { index !== (activeLayers.length - 1) ? (
                 <div
