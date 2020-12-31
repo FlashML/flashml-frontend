@@ -53,7 +53,7 @@ const MainBar = ({downloadRequest, downloadCurrentState, handleUploadedFile}) =>
       className="mt-0 mb-3 align-items-center"
       style={{
         backgroundColor: "#8600E8",
-        height: "9vh",
+        height: "65px",
       }}
     >
       <Col lg="3"

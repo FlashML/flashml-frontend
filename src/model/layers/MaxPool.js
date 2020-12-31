@@ -3,9 +3,8 @@ import Layer from "./Layer.js"
 class MaxPool extends Layer {
   label = "Maxpool 2D"
   color = "#939393"
-  kernelSize = 2
 
-  constructor(uid, kernelSize) {
+  constructor(uid, kernelSize=2) {
     super(uid)
     this.kernelSize = kernelSize
   }

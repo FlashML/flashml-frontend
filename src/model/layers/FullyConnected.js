@@ -3,9 +3,8 @@ import Layer from "./Layer.js"
 class FullyConnected extends Layer {
   label = "Fully Connected"
   color = "#33D2B3"
-  size = 256
 
-  constructor(uid, size) {
+  constructor(uid, size=256) {
     super(uid)
     this.size = size
   }

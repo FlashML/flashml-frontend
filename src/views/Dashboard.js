@@ -16,8 +16,8 @@
 
 */
 
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { Prompt } from "react-router-dom";
 import {
   Container,
   Row,
@@ -54,6 +54,14 @@ const Dashboard = () => {
   // Right Config State
   const [activeId, setActiveId] = useState();
 
+  useEffect(() => {
+    window.onbeforeunload = (e) => {
+      return ''
+    };
+
+    return () => window.onbeforeunload = null
+  }, [])
+
   const downloadCurrentState = () => {
     var content = getCurrentStateJson(activeLayers, epochs, optimizer, learningRate, trainBS, lossFunction, savePath, dataset)
     var a = document.createElement("a");
@@ -72,6 +80,9 @@ const Dashboard = () => {
       setDataset(data['dataset_name'])
       setSavePath(data['checkpoint_path'])
       setLearningRate(data['hyperparameters']['learning_rate'])
+      setLossFunction(data['hyperparameters']['loss'])
+      setTrainBS(data['hyperparameters']['trainBS'])
+      setTestBS(data['hyperparameters']['testBS'])
       setActiveLayers(data['layers'].map(item => LayerFactory.creatLayerFromList(item)));
     }
     reader.onerror = function () {

@@ -25,7 +25,7 @@ const FcConfigForm = ({ layer, setActiveId }) => {
           <p># Weights</p>
         </Col>
         <Col lg="6">
-          <Input type="text" name="width" placeholder="32" value={ size } onChange={(e) => setSize(e.target.value)}/>
+          <Input type="text" name="width" value={ size } onChange={(e) => setSize(e.target.value)}/>
         </Col>
       </Row>
       <Button className="mt-2" color="success" onClick={onSave}>Save</Button>

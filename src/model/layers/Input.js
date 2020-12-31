@@ -3,11 +3,8 @@ import Layer from "./Layer.js"
 class Input extends Layer {
   label = "Input"
   color = "#00BC03"
-  width = 32
-  height = 32
-  depth = 3
 
-  constructor(uid, width, height, depth) {
+  constructor(uid, width=32, height=32, depth=3) {
     super(uid)
     this.width = width
     this.height = height
