@@ -9,7 +9,7 @@ export function getLayerFromId(id, activeLayers) {
   return null;
 }
 
-export function getCurrentStateJson(activeLayers, epochs, learningRate, trainBS, lossFunction, savePath, dataset) {
+export function getCurrentStateJson(activeLayers, epochs, optimizer, learningRate, trainBS, lossFunction, savePath, dataset) {
   return (
     JSON.stringify({
       layers: activeLayers.map((layer) => layer.toJson()),
@@ -21,6 +21,7 @@ export function getCurrentStateJson(activeLayers, epochs, learningRate, trainBS,
         num_workers: 1,
         loss: lossFunction,
       },
+      optimizer: optimizer,
       checkpoint_path: savePath,
       dataset_name: dataset,
     })

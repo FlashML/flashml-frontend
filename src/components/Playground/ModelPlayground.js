@@ -22,7 +22,7 @@ const ModelPlayground = ({ activeLayers, setActiveLayers, activeId, setActiveId 
     >
       {
         activeLayers.map((obj, index) => (
-          <div>
+          <div key={index}>
             <StaticLayer 
               color={ obj.color } 
               name={ obj.label } 

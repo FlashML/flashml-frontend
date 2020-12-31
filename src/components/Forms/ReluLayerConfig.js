@@ -1,11 +1,4 @@
-import React, { useState } from "react";
-
-import {
-  Row, 
-  Col, 
-  Input,
-  Button
-} from "reactstrap";
+import React from "react";
 
 
 const ConvConfigForm = ({ layer, setActiveId }) => {

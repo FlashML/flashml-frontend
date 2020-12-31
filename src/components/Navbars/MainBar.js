@@ -1,5 +1,5 @@
 
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import {
   Row, 
   Col,
@@ -10,9 +10,23 @@ import {
 import Instructions from "../Tooltips/Instructions.js"
 import UploadTooltip from "../Tooltips/UploadTooltip.js"
 
-const MainBar = ({downloadRequest, downloadCurrentState, uploadCurrentState}) => {
+const MainBar = ({downloadRequest, downloadCurrentState, handleUploadedFile}) => {
   const [helpTooltipOpen, setHelpTooltipOpen] = useState(false);
   const [uploadTooltipOpen, setUploadTooltipOpen] = useState(false);
+
+  const hiddenFileInput = useRef(null);
+
+  // Programatically click the hidden file input element
+  // when the Button component is clicked
+  const handleClick = () => {
+    hiddenFileInput.current.click();
+  };
+  // Call a function (passed as a prop from the parent component)
+  // to handle the user-selected file
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    handleUploadedFile(fileUploaded);
+  };
 
   const menuButtons = [
     {
@@ -25,13 +39,14 @@ const MainBar = ({downloadRequest, downloadCurrentState, uploadCurrentState}) =>
     },
     {
       name: "Upload",
-      action: uploadCurrentState,
+      action: handleClick,
     },
     {
       name: "Help",
       action: () => {},
     },
   ]
+
 
   return (
     <Row 
@@ -59,11 +74,12 @@ const MainBar = ({downloadRequest, downloadCurrentState, uploadCurrentState}) =>
       </Col>
       <Col lg="6" className="text-center">
       {
-        menuButtons.map(function (item, _) {
+        menuButtons.map(function (item, index) {
           return (
             <Button 
               className="mt-0" 
               id={item.name}
+              key={index}
               color="primary" 
               type="button"
               size="sm"
@@ -90,6 +106,12 @@ const MainBar = ({downloadRequest, downloadCurrentState, uploadCurrentState}) =>
         >
           <UploadTooltip />
         </Tooltip>
+        <input
+          type="file"
+          ref={hiddenFileInput}
+          onChange={handleChange}
+          style={{display: 'none'}}
+        />
         <Tooltip
           placement="bottom"
           isOpen={helpTooltipOpen}

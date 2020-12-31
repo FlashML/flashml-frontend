@@ -7,6 +7,13 @@ class Input extends Layer {
   height = 32
   depth = 3
 
+  constructor(uid, width, height, depth) {
+    super(uid)
+    this.width = width
+    this.height = height
+    this.depth = depth
+  }
+
   toJson() {
     return ["input", this.width, this.height, this.depth]
   }

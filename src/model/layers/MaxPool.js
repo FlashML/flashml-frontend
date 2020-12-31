@@ -5,6 +5,11 @@ class MaxPool extends Layer {
   color = "#939393"
   kernelSize = 2
 
+  constructor(uid, kernelSize) {
+    super(uid)
+    this.kernelSize = kernelSize
+  }
+
   toJson() {
     return ["maxpool2d", this.kernelSize]
   }

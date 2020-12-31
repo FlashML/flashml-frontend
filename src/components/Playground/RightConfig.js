@@ -47,8 +47,8 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
         <div>
           <p>Click a layer to add it to your model!</p>
           { 
-            LayerFactory.getAllAvailableLayers().map((obj, _) => (
-              <>
+            LayerFactory.getAllAvailableLayers().map((obj, index) => (
+              <div key={index}>
                 <StaticLayer 
                   color={ obj.color } 
                   name={ obj.label } 
@@ -61,7 +61,7 @@ const RightConfig = ({ activeLayers, setActiveLayers, activeId, setActiveId }) =
                   }}
                 >
                 </div>
-              </>
+              </div>
             ))
           }
         </div>

@@ -48,6 +48,39 @@ class LayerFactory {
     return result;
   }
 
+  static creatLayerFromList(layerConfigList) {
+    var result;
+    var name = layerConfigList[0]
+    switch (name) {
+      case "input":
+        var width = layerConfigList[1];
+        var height = layerConfigList[2];
+        var depth = layerConfigList[3];
+        result = new Input(LayerFactory.uid, width, height, depth);
+        break;
+      case "conv2d":
+        var numFilters = layerConfigList[1];
+        var kernelSize = layerConfigList[2];
+        result = new Conv2D(LayerFactory.uid, numFilters, kernelSize);
+        break;
+      case "relu":
+        result = new Relu(LayerFactory.uid);
+        break;
+      case "maxpool2d":
+        var kernel = layerConfigList[1];
+        result = new MaxPool(LayerFactory.uid, kernel);
+        break;
+      case "dense":
+        var size = layerConfigList[1];
+        result = new FullyConnected(LayerFactory.uid, size);
+        break;
+      default:
+        throw new Error("Layer with name: " + name + " does not exist");
+    }
+    LayerFactory.uid += 1;
+    return result;
+  }
+
   /** 
    * Returns a layer object for each available layer
    **/

@@ -55,16 +55,32 @@ const Dashboard = () => {
   const [activeId, setActiveId] = useState();
 
   const downloadCurrentState = () => {
-    var content = getCurrentStateJson(activeLayers, epochs, learningRate, trainBS, lossFunction, savePath, dataset)
+    var content = getCurrentStateJson(activeLayers, epochs, optimizer, learningRate, trainBS, lossFunction, savePath, dataset)
     var a = document.createElement("a");
-    var file = new Blob([content], {type: 'text/plain'});
+    var file = new Blob([content], {type: 'application/json'});
     a.href = URL.createObjectURL(file);
-    a.download = 'flash-save-' + Math.floor(Date.now().toT / 1000) + '.json';
+    a.download = 'flash-save-' + Math.floor(Date.now() / 1000) + '.json';
     a.click();
   }
 
+  const handleUploadedFile = (file) => {
+    var reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (evt) {
+      const data = JSON.parse(evt.target.result)
+      setOptimizer(data['optimizer']);
+      setDataset(data['dataset_name'])
+      setSavePath(data['checkpoint_path'])
+      setLearningRate(data['hyperparameters']['learning_rate'])
+      setActiveLayers(data['layers'].map(item => LayerFactory.creatLayerFromList(item)));
+    }
+    reader.onerror = function () {
+      alert("An error occured while parsing the file.")
+    }
+  }
+
 	const sendData = async function() {
-    const data = getCurrentStateJson(activeLayers, epochs, learningRate, trainBS, lossFunction, savePath, dataset)
+    const data = getCurrentStateJson(activeLayers, epochs, optimizer, learningRate, trainBS, lossFunction, savePath, dataset)
     console.log(data)
 		return await fetch(REACT_APP_BACKEND_DOMAIN + "api/create_code", {
 			method: "POST",
@@ -92,6 +108,7 @@ const Dashboard = () => {
       <MainBar 
 				downloadRequest={sendData}
         downloadCurrentState={downloadCurrentState}
+        handleUploadedFile={handleUploadedFile}
 			/>
       <Container fluid className="mx-2">
         <Row className="mt-1 mb-2"

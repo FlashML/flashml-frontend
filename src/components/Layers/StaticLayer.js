@@ -2,7 +2,6 @@ import React from "react";
 
 import {
   Col,
-  Button
 } from "reactstrap";
 
 const StaticLayer = ({ color, name, handleClick, removable, onRemove }) => {
