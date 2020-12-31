@@ -34,8 +34,12 @@ import LayerFactory from "../model/factory/LayerFactory.js"
 import Instructions from "./Instructions.js"
 
 const inputLayer = LayerFactory.createLayerFromName("Input");
-const DEV_REACT_APP_BACKEND_DOMAIN = "http://127.0.0.1:5000/"
-const PROD_REACT_APP_BACKEND_DOMAIN = "https://beta.flash-ml.com/"
+
+const PROD = false;
+var REACT_APP_BACKEND_DOMAIN = "http://127.0.0.1:5000/";
+if (PROD) {
+	var REACT_APP_BACKEND_DOMAIN = "https://beta.flash-ml.com/";
+}
 
 const Dashboard = () => {
   // Left Config State
@@ -70,7 +74,7 @@ const Dashboard = () => {
 			})
 
     console.log(data)
-		return await fetch(PROD_REACT_APP_BACKEND_DOMAIN + "api/create_code", {
+		return await fetch(REACT_APP_BACKEND_DOMAIN + "api/create_code", {
 			method: "POST",
 			headers: {
 				"Content-type": "application/json",
