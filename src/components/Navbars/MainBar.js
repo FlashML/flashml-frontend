@@ -35,29 +35,34 @@ const MainBar = ({downloadRequest, downloadCurrentState, uploadCurrentState}) =>
 
   return (
     <Row 
-      className="mt-2 mb-2"
+      className="mt-0 mb-3 align-items-center"
+      style={{
+        backgroundColor: "#8600E8",
+        height: "9vh",
+      }}
     >
       <Col lg="3"
+        className="text-center"
         style={{
           verticalAlign: 'center'
         }}
       >
         <h3 
-          className="ml-4"
+          className="justify-content-center ml-4 mb-0"
           style={{
             fontWeight: "bold",
-            color: "#8600E8"
+            color: "white",
           }}
         >
           Flash-ML
         </h3>
       </Col>
-      <Col lg="6">
+      <Col lg="6" className="text-center">
       {
         menuButtons.map(function (item, _) {
           return (
             <Button 
-              className="mt-2 py-2" 
+              className="mt-0" 
               id={item.name}
               color="primary" 
               type="button"
@@ -65,7 +70,6 @@ const MainBar = ({downloadRequest, downloadCurrentState, uploadCurrentState}) =>
               onClick={item.action}
               style={{
                 color: "white",
-                marginTop: "10px",
                 backgroundColor: "#8600E8",
                 border: 'none'
               }}
@@ -98,7 +102,21 @@ const MainBar = ({downloadRequest, downloadCurrentState, uploadCurrentState}) =>
           <Instructions />
         </Tooltip>
       </Col>
-      <Col lg="3" clasName="justify-content-center">
+      <Col lg="3" className="text-center">
+        <Button 
+          className="mt-0" 
+          color="primary" 
+          type="button"
+          size="sm"
+          onClick={() => window.location.href='mailto:rahuldesai@berkeley.edu'}
+          style={{
+            color: "white",
+            background: "#8600E8",
+            borderColor: '#8600E8'
+          }}
+        >
+          Contact
+        </Button>
       </Col>
     </Row>
   )
