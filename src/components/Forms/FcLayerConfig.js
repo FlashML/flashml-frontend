@@ -22,7 +22,7 @@ const FcConfigForm = ({ layer, setActiveId }) => {
     <>
       <Row className="mt-2">
         <Col lg="6">
-          <p>Kernel Size (Square)</p>
+          <p># Weights</p>
         </Col>
         <Col lg="6">
           <Input type="text" name="width" placeholder="32" value={ size } onChange={(e) => setSize(e.target.value)}/>

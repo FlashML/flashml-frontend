@@ -5,7 +5,6 @@ class Conv2D extends Layer {
   color = "#005DBC"
   numFilters = 32
   kernelSize = 2
-  stride = 2
 
   toJson() {
     return ["conv2d", this.numFilters, this.kernelSize]

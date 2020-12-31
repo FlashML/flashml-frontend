@@ -11,14 +11,12 @@ import {
 const ConvConfigForm = ({ layer, setActiveId }) => {
   const [kernelSize, setKernelSize] = useState(layer.kernelSize);
   const [numFilters, setNumFilters] = useState(layer.numFilters);
-  const [stride, setStride] = useState(layer.stride);
 
 
   /* Update activeLayers by changing the values of the obj in activeId */
   const onSave = () => {
     layer.kernelSize = kernelSize;
     layer.numFilters = numFilters;
-    layer.stride = stride;
     setActiveId(null);
   }
 
@@ -30,14 +28,6 @@ const ConvConfigForm = ({ layer, setActiveId }) => {
         </Col>
         <Col lg="6">
           <Input type="text" name="width" placeholder="32" value={ kernelSize } onChange={(e) => setKernelSize(e.target.value)}/>
-        </Col>
-      </Row>
-      <Row className="mt-2">
-        <Col lg="6">
-          <p>Stride</p>
-        </Col>
-        <Col lg="6">
-          <Input type="text" name="width" placeholder="32" value={ stride } onChange={(e) => setStride(e.target.value)}/>
         </Col>
       </Row>
       <Row className="mt-2">

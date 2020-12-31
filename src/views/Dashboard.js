@@ -39,14 +39,14 @@ const PROD_REACT_APP_BACKEND_DOMAIN = "https://beta.flash-ml.com/"
 
 const Dashboard = () => {
   // Left Config State
-  const [optimizer, setOptimizer] = useState();
+  const [optimizer, setOptimizer] = useState('SGD');
   const [learningRate, setLearningRate] = useState(0.001);
-  const [lossFunction, setLossFunction] = useState();
+  const [lossFunction, setLossFunction] = useState('L2');
   const [trainBS, setTrainBS] = useState(32);
   const [epochs, setEpochs] = useState(10);
   const [testBS, setTestBS] = useState(32);
   const [dataset, setDataset] = useState('CIFAR10');
-  const [savePath, setSavePath] = useState('/foo/bar/checkpoint.pt');
+  const [savePath, setSavePath] = useState('checkpoint.pt');
   // Model Playground State
   const [activeLayers, setActiveLayers] = useState([inputLayer]);
   // Right Config State
@@ -62,7 +62,7 @@ const Dashboard = () => {
 					learning_rate: learningRate,
 					momentum: 0.1,
 					batch_size: trainBS,
-					num_workers: 4,
+					num_workers: 1,
 					loss: lossFunction,
 				},
 				checkpoint_path: savePath,
