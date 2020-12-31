@@ -2,7 +2,7 @@ import Layer from "./Layer.js"
 
 class FullyConnected extends Layer {
   label = "Fully Connected"
-  color = "#4E00B5"
+  color = "#33D2B3"
   size = 256
 
   toJson() {

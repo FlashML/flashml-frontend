@@ -17,14 +17,11 @@
 */
 
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 
 import {
   Container,
   Row,
   Col,
-  Button,
-  Tooltip
 } from "reactstrap";
 
 import MainBar from "../components/Navbars/MainBar.js";
@@ -32,7 +29,7 @@ import LeftConfig from "../components/Playground/LeftConfig.js"
 import ModelPlayground from "../components/Playground/ModelPlayground.js"
 import RightConfig from "../components/Playground/RightConfig.js"
 import LayerFactory from "../model/factory/LayerFactory.js"
-import Instructions from "./Instructions.js"
+import { getCurrentStateJson } from "../utils/ModelUtils.js"
 
 const inputLayer = LayerFactory.createLayerFromName("Input");
 
@@ -56,24 +53,18 @@ const Dashboard = () => {
   const [activeLayers, setActiveLayers] = useState([inputLayer]);
   // Right Config State
   const [activeId, setActiveId] = useState();
-  // Other
-  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const downloadCurrentState = () => {
+    var content = getCurrentStateJson(activeLayers, epochs, learningRate, trainBS, lossFunction, savePath, dataset)
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: 'text/plain'});
+    a.href = URL.createObjectURL(file);
+    a.download = 'flash-save-' + Math.floor(Date.now().toT / 1000) + '.json';
+    a.click();
+  }
 
 	const sendData = async function() {
-    const data = JSON.stringify({
-        layers: activeLayers.map((layer) => layer.toJson()),
-				hyperparameters: {
-					epochs: epochs,
-					learning_rate: learningRate,
-					momentum: 0.1,
-					batch_size: trainBS,
-					num_workers: 1,
-					loss: lossFunction,
-				},
-				checkpoint_path: savePath,
-				dataset_name: dataset,
-			})
-
+    const data = getCurrentStateJson(activeLayers, epochs, learningRate, trainBS, lossFunction, savePath, dataset)
     console.log(data)
 		return await fetch(REACT_APP_BACKEND_DOMAIN + "api/create_code", {
 			method: "POST",
@@ -100,6 +91,7 @@ const Dashboard = () => {
     <>
       <MainBar 
 				downloadRequest={sendData}
+        downloadCurrentState={downloadCurrentState}
 			/>
       <Container fluid className="mx-2">
         <Row className="mt-1 mb-2"
@@ -141,33 +133,6 @@ const Dashboard = () => {
               }}
             >
               Model Playground 
-                <Button
-                  className="ml-2 text-center"
-                  id="instructions"
-                  style={{
-                    margin: "0",
-                    padding: "0",
-                    fontSize: "16px",
-                    color: "white",
-                    height: "30px",
-                    width: "30px",
-                    borderRadius: "100%",
-                    background: "#BEBEBE",
-                  }}
-                >
-                  ?
-                </Button>
-              <Tooltip
-                placement="right"
-                isOpen={tooltipOpen}
-                target="instructions"
-                style={{
-                  width: "250px",
-                }}
-                toggle={() => setTooltipOpen(!tooltipOpen)}
-              >
-                <Instructions />
-              </Tooltip>
             </h6>
             <ModelPlayground 
               activeLayers={ activeLayers }
