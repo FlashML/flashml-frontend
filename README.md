@@ -7,11 +7,9 @@
 
 ## TODO
 1. [X] Model Playground
-2. Code Generation (MVP)
-We will create a toJson function that will serialize the data and send it to the flask server to be processed
-3. Download and upload current config/model for later changes
-4. Dimensionality checking 
-Model debugging features
+2. [X] Code Generation (MVP)
+3. [X] Download and upload current config/model for later changes
+4. Dimensionality checking and other model debugging features
 
 ## Feature Requests
 1. Bidirecitonal code <-> GUI generation
