@@ -19,6 +19,7 @@ const StaticLayer = ({ color, name, handleClick, removable, onRemove }) => {
         backgroundColor: color,
         color: "white",
         padding: "0",
+        position: 'relative'
       }}
     >
       {name}
@@ -30,11 +31,13 @@ const StaticLayer = ({ color, name, handleClick, removable, onRemove }) => {
               className='mr-2 pr-2'
               style={{
                 height: '100%',
-                float: 'right',
                 color: 'white',
                 backgroundColor: color,
                 border: 'none',
                 cursor: 'pointer',
+                position: 'absolute',
+                right: '0',
+                top: '0',
               }}
               onClick={remove}
             >
