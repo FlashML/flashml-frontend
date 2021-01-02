@@ -87,7 +87,7 @@ const MainBar = ({downloadRequest, downloadCurrentState, handleUploadedFile}) =>
               style={{
                 color: "white",
                 backgroundColor: "#8600E8",
-                border: 'none'
+                border: item.name === 'Generate Code' ? '1px solid white' : 'none'
               }}
             >
               {item.name}
