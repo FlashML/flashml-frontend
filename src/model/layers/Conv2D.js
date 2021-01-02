@@ -4,7 +4,7 @@ class Conv2D extends Layer {
   label = "Convolution 2D"
   color = "#005DBC"
 
-  constructor(uid, numFilters=2, kernelSize=32) {
+  constructor(uid, numFilters=32, kernelSize=5) {
     super(uid)
     this.numFilters = numFilters;
     this.kernelSize = kernelSize;
