@@ -88,9 +88,9 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
               {lossFunction == null ? "Select" : lossFunction}
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem onClick={handleLossChange} value="L2">Mean Square Error</DropdownItem>
-              <DropdownItem onClick={handleLossChange} value="L1">Mean Absolute Error</DropdownItem>
-              <DropdownItem onClick={handleLossChange} value="CE">Cross Entropy</DropdownItem>
+              <DropdownItem onClick={handleLossChange} value="L2">Mean Square Error (L2)</DropdownItem>
+              <DropdownItem onClick={handleLossChange} value="L1">Mean Absolute Error (L1)</DropdownItem>
+              <DropdownItem onClick={handleLossChange} value="CE">Cross Entropy (CE) </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </Col>
@@ -141,7 +141,7 @@ const LeftConfig = ({optimizer, setOptimizer, learningRate, setLearningRate, los
             <DropdownMenu>
               <DropdownItem onClick={handleDatasetChange} value="CIFAR10">CIFAR-10</DropdownItem>
               <DropdownItem onClick={handleDatasetChange} value="CIFAR100">CIFAR-100</DropdownItem>
-              <DropdownItem onClick={handleDatasetChange} value="FashionMNIST">F-MNIST</DropdownItem>
+              <DropdownItem onClick={handleDatasetChange} value="FashionMNIST">Fashion-MNIST</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </Col>
