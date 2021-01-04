@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/creativetimofficial/argon-design-system-react.git"
+    "url": "git+http://beta.flash-ml.com"
   },
   "keywords": [
     "react",
@@ -25,9 +25,9 @@
   "author": "Creative Tim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/creativetimofficial/argon-design-system-react/issues"
+    "url": "http://beta.flash-ml.com/"
   },
-  "homepage": "https://demos.creative-tim.com/argon-design-system-react/",
+  "homepage": "http://beta.flash-ml.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
