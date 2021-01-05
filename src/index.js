@@ -27,7 +27,7 @@ import "assets/scss/argon-design-system-react.scss?v1.1.0";
 
 import Dashboard from "views/Dashboard.js";
 
-ReactGA.initialize('UA-tracking-id'); // add your tracking id here.
+ReactGA.initialize('UA-186475509-1'); // add your tracking id here.
 ReactGA.pageview(window.location.pathname + window.location.search);
 ReactDOM.render(
   <BrowserRouter>
