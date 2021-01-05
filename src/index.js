@@ -15,6 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import ReactGA from 'react-ga';
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -25,6 +27,8 @@ import "assets/scss/argon-design-system-react.scss?v1.1.0";
 
 import Dashboard from "views/Dashboard.js";
 
+ReactGA.initialize('UA-tracking-id'); // add your tracking id here.
+ReactGA.pageview(window.location.pathname + window.location.search);
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
