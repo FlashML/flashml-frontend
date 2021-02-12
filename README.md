@@ -1,6 +1,6 @@
 # FlashML React Frontend
 FlashML is a webapp that provides a GUI for quickly and easily building maching learning models in PyTorch.
-The backend python code can be found here: https://github.com/rahuldesai1/flashml-backend
+The backend python code can be found here: https://github.com/FlashML/flashml-backend
 
 ![image](https://drive.google.com/uc?export=view&id=1UD34i77eNV7sucO4FXaZyXhXckKCh4JK)
 
