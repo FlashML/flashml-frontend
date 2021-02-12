@@ -1,5 +1,7 @@
 # FlashML React Frontend
 
+![image](https://drive.google.com/uc?export=view&id=1UD34i77eNV7sucO4FXaZyXhXckKCh4JK)
+
 ## Start the development server
 1. `yarn install`
 2. `yarn start run`
